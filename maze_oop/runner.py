@@ -1,10 +1,9 @@
 from sharik import Sharik
 
-sharik_parameters = ['*', 21]
+sharik_parameters = ['*', 22]
 
 arr = ['\n', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '\n',
-       f'{sharik_parameters[0]}', ' ', ' ', ' ', '█', ' ', ' ', ' ', ' ', ' ', '█', ' ', ' ', ' ', '█', ' ', ' ', ' ',
-       '█', '\n',
+       '█', ' ', ' ', ' ', '█', ' ', ' ', ' ', ' ', ' ', '█', ' ', ' ', ' ', '█', ' ', ' ', ' ', '█', '\n',
        '█', '█', '█', ' ', '█', ' ', '█', '█', '█', '█', '█', ' ', '█', ' ', '█', '█', '█', ' ', '█', '\n',
        '█', ' ', ' ', ' ', '█', ' ', ' ', ' ', '█', ' ', ' ', ' ', '█', ' ', ' ', ' ', ' ', ' ', '█', '\n',
        '█', ' ', '█', '█', '█', '█', '█', ' ', '█', ' ', '█', ' ', '█', '█', '█', '█', '█', '█', '█', '\n',
@@ -22,35 +21,32 @@ arr = ['\n', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█
        '█', ' ', '█', ' ', '█', '█', '█', ' ', '█', ' ', '█', ' ', '█', ' ', '█', '█', '█', ' ', '█', '\n',
        '█', ' ', '█', ' ', ' ', ' ', '█', ' ', '█', ' ', '█', ' ', ' ', ' ', ' ', ' ', '█', ' ', '█', '\n',
        '█', ' ', '█', '█', '█', ' ', '█', ' ', '█', ' ', '█', '█', '█', '█', '█', ' ', '█', '█', '█', '\n',
-       '█', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '█', ' ', ' ', ' ', ' ', ' ', '█', ' ', ' ', ' ', ' ', '\n',
+       '█', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '█', ' ', ' ', ' ', ' ', ' ', '█', ' ', ' ', ' ', 'X', '\n',
        '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', '█', ]
+
+
+
+array_correct_path = [22,23,24,44,54,53,52]
 
 sharik = Sharik(arr)
 
 maze = ' '.join(arr)
 print(maze)
 
-while (True):
+
+
+while True:
     move = input(':')
     if move == 'd':
-        if arr[sharik_parameters[1]+1] == '█':
-            print("Шарік вдарилася об стіну, гра закінчена.")
+        if not sharik.move_right(sharik_parameters):
             break
-        sharik.move_right(sharik_parameters)
     if move == 'a':
-        if arr[sharik_parameters[1]-1] == '█':
-            print("Шарік вдарилася об стіну, гра закінчена.")
+        if not sharik.move_left(sharik_parameters):
             break
-        sharik.move_left(sharik_parameters)
-
     if move == 's':
-        if arr[sharik_parameters[1] + 20] == '█':
-            print("Шарік вдарилася об стіну, гра закінчена.")
+        if not sharik.move_down(sharik_parameters):
             break
-        sharik.move_down(sharik_parameters)
     if move == 'w':
-        if arr[sharik_parameters[1] - 20] == '█':
-            print("Шарік вдарилася об стіну, гра закінчена.")
+        if not sharik.move_up(sharik_parameters):
             break
-        sharik.move_up(sharik_parameters)
     sharik.display()
