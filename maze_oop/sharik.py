@@ -62,6 +62,7 @@ class Sharik:
                 self.sharik_parameters[2] += 1
                 return True
             else:
+                self.sharik_parameters[2] -= 1
                 print("Шарик заблукав, гра закінчена.")
                 return False
         print("Шарик вдарилася об стіну, гра закінчена.")
@@ -87,11 +88,11 @@ class Sharik:
         return False
 
     def save_progress(self):
-        with open("progress.json", "w", encoding="utf-8") as file:
+        with open("progress.json", "w") as file:
             json.dump(self.sharik_parameters, file)
 
     def load_progress(self):
-        with open("progress.json", "r", encoding="utf-8") as file:
+        with open("progress.json", "r") as file:
             self.maze[self.sharik_parameters[1]] = " "
             self.sharik_parameters = json.load(file)
             self.maze[self.sharik_parameters[1]] = "*"
