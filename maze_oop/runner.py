@@ -1,5 +1,4 @@
 from sharik import Sharik
-import os
 
 sharik_parameters = ['*', 22, 0]
 
@@ -33,30 +32,27 @@ correct_path = (22, 23, 24, 44, 64, 63, 62, 82, 102, 103, 104, 105, 106, 107, 10
 sharik = Sharik(maze, sharik_parameters, correct_path)
 sharik.display()
 
-
 load_progress = input("Завантажити прогрес (+,-):")
 if load_progress == '+':
+    sharik.save_progress()
     sharik_parameters = sharik.load_progress()
     sharik = Sharik(maze, sharik_parameters, correct_path)
     sharik.display()
 
 while True:
-    if os.path.exists("progress.json"):
-        sharik.save_progress()
-        sharik.load_progress()
-        move = input(':')
-        if move == 'd':
-            if not sharik.move_right():
-                break
-        if move == 'a':
-            if not sharik.move_left():
-                break
-        if move == 's':
-            if not sharik.move_down():
-                break
-        if move == 'w':
-            if not sharik.move_up():
-                break
-    else:
-        sharik.save_progress()
+    sharik.save_progress()
+    sharik.load_progress()
+    move = input(':')
+    if move == 'd':
+        if not sharik.move_right():
+            break
+    if move == 'a':
+        if not sharik.move_left():
+            break
+    if move == 's':
+        if not sharik.move_down():
+            break
+    if move == 'w':
+        if not sharik.move_up():
+            break
     sharik.display()
